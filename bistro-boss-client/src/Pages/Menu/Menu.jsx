@@ -25,16 +25,16 @@ const Menu = () => {
       <MenuCategory subHeading="Don't Miss" heading="Today's Offer" items={offered}></MenuCategory>
 
       <Cover img={dessertImg} title="Desserts"></Cover>
-      <MenuCategory items={dessert}></MenuCategory>
+      <MenuCategory title="dessert" items={dessert}></MenuCategory>
 
       <Cover img={pizzaImg} title="Pizzas"></Cover>
-      <MenuCategory items={pizza}></MenuCategory>
+      <MenuCategory title="pizza" items={pizza}></MenuCategory>
       
       <Cover img={saladImg} title="Salads"></Cover>
-      <MenuCategory items={salad}></MenuCategory>
+      <MenuCategory title="salad" items={salad}></MenuCategory>
 
       <Cover img={soupImg} title="Soups"></Cover>
-      <MenuCategory items={soup}></MenuCategory>
+      <MenuCategory title="soup" items={soup}></MenuCategory>
       
     </div>
   );
