@@ -6,7 +6,7 @@ const FoodCard = ({ item }) => {
         <img src={image} alt={name} className="rounded-xl rounded-b-none" />
       </figure>
       <div className="px-10">
-        <p className="bg-black text-center text-xl text-yellow-500 w-full py-1">${price}</p>
+        <p className="bg-black text-center text-xl text-yellow-500 w-full py-1 rounded-xl rounded-t-none">${price}</p>
       </div>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{name}</h2>
