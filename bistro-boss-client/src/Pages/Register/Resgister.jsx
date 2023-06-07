@@ -1,36 +1,37 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
-import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import {
+    loadCaptchaEnginge,
+    LoadCanvasTemplate,
+    validateCaptcha,
+  } from "react-simple-captcha";
+import { AuthContext } from "../../providers/AuthProvider";
 
-const Login = () => {
+const Resgister = () => {
   const captchaRef = useRef(null);
-  const [loginBtnClass, setLoginBtnClass] = useState(
+  const [registerBtnClass, setregisterBtnClass] = useState(
     "btn btn-primary btn-disabled"
   );
+  const { createUser } = useContext(AuthContext);
 
-  const { signIn } = useContext(AuthContext);
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
-  const handleLogin = (event) => {
+  const handleRegiser = (event) => {
     event.preventDefault();
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
-    signIn(email,password)
+    console.log(name, email, password);
+    createUser(email,password)
     .then(res => {
       const user = res.user;
       console.log(user)
     })
   };
+
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
   const handleValidateCaptcha = (event) => {
     event.preventDefault();
@@ -38,18 +39,18 @@ const Login = () => {
 
     if (user_captcha_value.length >= 6) {
       if (validateCaptcha(user_captcha_value)) {
-        setLoginBtnClass("btn btn-primary");
+        setregisterBtnClass("btn btn-primary");
       } else {
-        setLoginBtnClass("btn btn-primary btn-disabled");
+        setregisterBtnClass("btn btn-primary btn-disabled");
       }
     }
   };
 
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col md:flex-row">
+      <div className="hero-content flex-col md:flex-row-reverse">
         <div className="text-center md:w-1/2 lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">SignUp now!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -57,7 +58,19 @@ const Login = () => {
           </p>
         </div>
         <div className="card md:w-1/2 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body" onSubmit={handleLogin}>
+          <form className="card-body" onSubmit={handleRegiser}>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="name"
+                className="input input-bordered"
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -102,14 +115,18 @@ const Login = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <input className={loginBtnClass} type="submit" value="Login" />
+              <input className={registerBtnClass} type="submit" value="Register" />
             </div>
           </form>
-          <p className="text-center"><small>New Here? <Link to="/signup">Create an Account</Link></small></p>
+          <p className="text-center">
+            <small>
+              Already have an account? <Link to="/login">Login</Link>
+            </small>
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Resgister;
