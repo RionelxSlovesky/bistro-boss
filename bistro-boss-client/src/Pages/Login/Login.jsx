@@ -1,16 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [loginBtnClass, setLoginBtnClass] = useState(
     "btn btn-primary btn-disabled"
   );
+
+  const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -22,6 +24,11 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email,password)
+    .then(res => {
+      const user = res.user;
+      console.log(user)
+    })
   };
 
   const handleValidateCaptcha = (event) => {
@@ -92,7 +99,7 @@ const Login = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <input className={loginBtnClass} type="submit" value="Login"/>
+              <input className={loginBtnClass} type="submit" value="Login" />
             </div>
           </form>
         </div>
