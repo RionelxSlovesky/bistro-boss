@@ -13,7 +13,7 @@ const Resgister = () => {
   const [registerBtnClass, setregisterBtnClass] = useState(
     "btn btn-primary btn-disabled"
   );
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const handleRegiser = (event) => {
     event.preventDefault();
@@ -21,10 +21,10 @@ const Resgister = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
     createUser(email, password).then((res) => {
       const user = res.user;
-      console.log(user);
+      console.log(user)
+      updateUserProfile(name,null)
     });
   };
 
