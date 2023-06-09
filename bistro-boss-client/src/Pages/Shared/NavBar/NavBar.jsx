@@ -72,7 +72,7 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
       {
-        user ? <Link className="btn btn-outline text-secondary text-xl"><FaShoppingCart />
+        user ? <Link className="btn btn-outline text-secondary text-xl" to={'/dashboard/mycart'}><FaShoppingCart />
           <div className="badge ms-2">+{cart?.length || 0}</div>
         </Link> : <></>
       }
