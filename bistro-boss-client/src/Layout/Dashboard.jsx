@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome } from 'react-icons/fa';
 
 const Dashboard = () => {
@@ -19,26 +19,26 @@ const Dashboard = () => {
         <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
           {/* Sidebar content here */}
           <li>
-            <Link><FaHome></FaHome>User Home</Link>
+            <NavLink><FaHome></FaHome>User Home</NavLink>
           </li>
           <li>
-            <Link><FaCalendarAlt></FaCalendarAlt>Reservations</Link>
+            <NavLink><FaCalendarAlt></FaCalendarAlt>Reservations</NavLink>
           </li>
           <li>
-            <Link><FaWallet></FaWallet> Payment History</Link>
+            <NavLink><FaWallet></FaWallet> Payment History</NavLink>
           </li>
           <li>
-            <Link to="/dashboard/mycart"><FaShoppingCart></FaShoppingCart>My Cart</Link>
+            <NavLink to="/dashboard/mycart"><FaShoppingCart></FaShoppingCart>My Cart</NavLink>
           </li>
           <div className="divider"></div>
           <li>
-            <Link to="/"><FaHome></FaHome> Home</Link>
+            <NavLink to="/"><FaHome></FaHome> Home</NavLink>
           </li>
           <li>
-            <Link to="/menu"> Our Menu</Link>
+            <NavLink to="/menu"> Our Menu</NavLink>
           </li>
           <li>
-            <Link to="/order/salad"> Order Food</Link>
+            <NavLink to="/order/salad"> Order Food</NavLink>
           </li>
         </ul>
       </div>
