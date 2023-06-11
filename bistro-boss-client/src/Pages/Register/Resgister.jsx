@@ -26,7 +26,7 @@ const Resgister = () => {
       console.log(user)
       updateUserProfile(name,null)
       .then(() => {
-        const savedUser = {name: name, eamil: email}
+        const savedUser = {name: name, email: email}
         fetch('http://localhost:5000/users', {
           method: 'POST',
           headers: {
