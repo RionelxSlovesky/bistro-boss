@@ -1,6 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 
-const MyCartItem = ({item,index}) => {
+const MyCartItem = ({item,index,handleDelete}) => {
   return (
     <tr>
       <td>{index + 1}</td>
@@ -22,7 +22,7 @@ const MyCartItem = ({item,index}) => {
       </td>
       <td>${item.price}</td>
       <td>
-        <button className="btn btn-ghost btn-lg"><FaTrashAlt></FaTrashAlt></button>
+        <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-lg"><FaTrashAlt></FaTrashAlt></button>
       </td>
     </tr>
   );

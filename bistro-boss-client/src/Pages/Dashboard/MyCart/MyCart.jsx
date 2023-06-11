@@ -4,8 +4,23 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import MyCartItem from "./MyCartItem";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const total = cart.reduce((sum, item) => item.price + sum, 0);
+
+
+  const handleDelete = (item) => {
+    fetch(`http://localhost:5000/carts/${item._id}`,{
+      method:'DELETE'
+    })
+    .then(res=> res.json())
+    .then(data=> {
+      if(data.deletedCount>0){
+        refetch()
+      }
+    })
+  }
+
+
   return (
     <div>
       <Helmet>
@@ -34,7 +49,7 @@ const MyCart = () => {
           </thead>
           <tbody>
             {
-                cart.map((item,index) => <MyCartItem key={item._id} item={item} index={index}></MyCartItem>)
+                cart.map((item,index) => <MyCartItem key={item._id} item={item} index={index} handleDelete={handleDelete}></MyCartItem>)
             }
             
           </tbody>

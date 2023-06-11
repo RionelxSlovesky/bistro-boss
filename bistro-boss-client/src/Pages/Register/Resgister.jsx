@@ -25,6 +25,16 @@ const Resgister = () => {
       const user = res.user;
       console.log(user)
       updateUserProfile(name,null)
+      .then(() => {
+        const savedUser = {name: name, eamil: email}
+        fetch('http://localhost:5000/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(savedUser)
+        })
+      })
     });
   };
 
